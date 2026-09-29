@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bizim Hikayemiz ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        /* Açılış */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            background: white;
+            color: #ff4f81;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+        }
+
+        /* Fotoğraf */
+
+        .photo {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            margin: 30px;
+        }
+
+        /* Sayaç */
+
+        .counter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .time-box {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 110px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .time-box small {
+            font-size: 14px;
+        }
+
+        /* Hikaye */
+
+        .story {
+            margin-top: 100px;
+            padding: 40px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+        }
+
+        .story h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .story p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* Kalpler */
+
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            font-size: 25px;
+            animation: fly 5s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .photo {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MÜZİK -->
+
+    <audio id="music" loop>
+        <source src="muzik.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- AÇILIŞ -->
+
+    <section class="hero">
+
+        <h1>Yaşar & Esin ❤️</h1>
+
+        <p>
+            Birlikte yazdığımız güzel hikâyeye hoş geldin...
+        </p>
+
+        <button onclick="startLove()">
+            Hikâyemize Gir ❤️
+        </button>
+
+    </section>
+
+
+    <!-- ANA İÇERİK -->
+
+    <main class="container">
+
+        <h1>Bizim Hikâyemiz ❤️</h1>
+
+        <!-- FOTOĞRAFIN BURAYA GELECEK -->
+
+        <img
+            src="biz.jpg"
+            alt="Biz"
+            class="photo"
+        >
+
+        <h2>
+            Seni Seviyorum ❤️
+        </h2>
+
+
+        <!-- SAYAÇ -->
+
+        <h2 style="margin-top: 50px;">
+            Birlikte Geçen Zamanımız
+        </h2>
+
+        <div class="counter">
+
+            <div class="time-box">
+                <span id="days">0</span>
+                <small>Gün</small>
+            </div>
+
+            <div class="time-box">
+                <span id="hours">0</span>
+                <small>Saat</small>
+            </div>
+
+            <div class="time-box">
+                <span id="minutes">0</span>
+                <small>Dakika</small>
+            </div>
+
+            <div class="time-box">
+                <span id="seconds">0</span>
+                <small>Saniye</small>
+            </div>
+
+        </div>
+
+
+        <!-- HİKAYE -->
+
+        <section class="story">
+
+            <h2>Bizim Hikâyemiz 💕</h2>
+
+            <p>
+                İyiki varsın, İyiki benimlesin.
+                Bazen sıradan bir günün içinde durup düşünüyorum.
+                Hayatın güzel taraflarını bana en çok sen hatırlatıyorsun.
+                ❤️
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /*
+            SEVGİLİ OLDUĞUNUZ TARİH
+
+            Burayı değiştir.
+
+            Örnek:
+
+            2025-06-15T20:30:00
+
+            = 15 Haziran 2025 saat 20:30
+        */
+
+        const startDate = new Date("2026-06-23T00:00:00");
+
+
+        /*
+            SAYAÇ
+        */
+
+        function updateCounter() {
+
+            const now = new Date();
+
+            const difference = now - startDate;
+
+            const seconds = Math.floor(difference / 1000);
+
+            const days = Math.floor(seconds / 86400);
+
+            const hours = Math.floor(
+                (seconds % 86400) / 3600
+            );
+
+            const minutes = Math.floor(
+                (seconds % 3600) / 60
+            );
+
+            const remainingSeconds =
+                seconds % 60;
+
+
+            document.getElementById("days").textContent =
+                days;
+
+            document.getElementById("hours").textContent =
+                hours;
+
+            document.getElementById("minutes").textContent =
+                minutes;
+
+            document.getElementById("seconds").textContent =
+                remainingSeconds;
+        }
+
+
+        /*
+            HER SANİYE GÜNCELLE
+        */
+
+        setInterval(updateCounter, 1000);
+
+        updateCounter();
+
+
+        /*
+            MÜZİĞİ BAŞLAT
+        */
+
+        function startLove() {
+
+            const music =
+                document.getElementById("music");
+
+            music.play();
+
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /*
+            UÇUŞAN KALPLER
+        */
+
+        function createHeart() {
+
+            const heart =
+                document.createElement("div");
+
+            heart.classList.add("heart");
+
+            heart.innerHTML = "❤️";
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (15 + Math.random() * 30) + "px";
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 5000);
+        }
+
+
+        setInterval(createHeart, 700);
+
+    </script>
+
+</body>
+</html>
+```
